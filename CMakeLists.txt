@@ -11,7 +11,7 @@ option(RTRB_BUILD_TESTS "Build rtrb tests" OFF)
 # The code to parse link libraries and options from rustc is mostly taken from
 # https://github.com/corrosion-rs/corrosion/blob/master/cmake/FindRust.cmake.
 execute_process(
-	COMMAND cargo rustc -- --print=native-static-libs
+	COMMAND cargo rustc --manifest-path ${PROJECT_SOURCE_DIR}/Cargo.toml -- --print=native-static-libs
 	ERROR_VARIABLE CARGO_STDERR
 )
 
