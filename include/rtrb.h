@@ -10,7 +10,7 @@
 typedef struct rtrb rtrb;
 
 /*
- * Creates a new ring buffer.
+ * Creates a new ring buffer with capacity `capacity`.
  */
 rtrb *rtrb_new(size_t capacity);
 
