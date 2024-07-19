@@ -83,3 +83,9 @@ target_include_directories(rtrb-static INTERFACE ${PROJECT_SOURCE_DIR}/include)
 
 target_link_libraries(rtrb-static INTERFACE ${RTRB_STATIC_LINK_LIBRARIES})
 target_link_options(rtrb-static INTERFACE ${RTRB_STATIC_LINK_OPTIONS})
+
+if(RTRB_BUILD_TESTS)
+    include(CTest)
+    enable_testing()
+    add_subdirectory(tests)
+endif()
