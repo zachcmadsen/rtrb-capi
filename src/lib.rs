@@ -17,6 +17,10 @@ pub extern "C" fn rtrb_new(capacity: usize) -> *mut RingBuffer {
 
 #[no_mangle]
 pub extern "C" fn rtrb_free(rb: *mut RingBuffer) {
+    if rb.is_null() {
+        return;
+    }
+
     unsafe { drop(Box::from_raw(rb)) }
 }
 
@@ -26,6 +30,10 @@ pub extern "C" fn rtrb_write(
     data: *const u8,
     len: usize,
 ) -> usize {
+    if rb.is_null() || data.is_null() {
+        return 0;
+    }
+
     let rb = unsafe { &mut *rb };
     let mut chunk = match rb.producer.write_chunk_uninit(len) {
         Ok(chunk) => chunk,
@@ -54,6 +62,10 @@ pub extern "C" fn rtrb_read(
     data: *mut u8,
     len: usize,
 ) -> usize {
+    if rb.is_null() || data.is_null() {
+        return 0;
+    }
+
     let rb = unsafe { &mut *rb };
     let chunk = match rb.consumer.read_chunk(len) {
         Ok(chunk) => chunk,
