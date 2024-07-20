@@ -1,5 +1,7 @@
 # rtrb-capi
 
+[![CI][ci_badge]][ci]
+
 A C API for [`rtrb`][rtrb], a thread-safe SPSC ring buffer written in Rust.
 
 The C API only covers a part of `rtrb`'s [chunk API][rtrb-chunks], and the
@@ -31,6 +33,9 @@ FetchContent_MakeAvailable(rtrb)
 add_executable(rtrb-example main.cpp)
 target_link_libraries(rtrb-example PRIVATE rtrb::rtrb-static) # or rtrb::rtrb-shared
 ```
+
+[ci_badge]: https://github.com/zachcmadsen/perfect6502-sys/workflows/CI/badge.svg
+[ci]: https://github.com/zachcmadsen/perfect6502-sys/actions?query=branch%3Amain
 
 [rtrb]: https://github.com/mgeier/rtrb
 [rtrb-chunks]: https://docs.rs/rtrb/latest/rtrb/chunks/index.html
