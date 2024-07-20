@@ -4,6 +4,11 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
 /*
  * A ring buffer.
  */
@@ -33,3 +38,7 @@ size_t rtrb_write(rtrb *rb, const uint8_t *data, size_t len);
  * bytes read.
  */
 size_t rtrb_read(rtrb *rb, uint8_t *data, size_t len);
+
+#ifdef __cplusplus
+}
+#endif
