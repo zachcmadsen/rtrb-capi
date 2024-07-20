@@ -1,3 +1,6 @@
+// Note: We assume that usize is compatible with size_t. See
+// https://github.com/dtolnay/cxx/pull/576.
+
 use rtrb::{chunks::ChunkError, CopyToUninit};
 
 type Producer = rtrb::Producer<u8>;
