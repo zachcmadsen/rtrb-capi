@@ -34,10 +34,20 @@ void rtrb_free(rtrb *rb);
 size_t rtrb_write(rtrb *rb, const uint8_t *data, size_t len);
 
 /*
+ * Return the number of bytes available for writing.
+ */
+size_t rtrb_write_available(rtrb *rb);
+
+/*
  * Reads up to `len` bytes from `rb` into `data`, and returns the number of
  * bytes read.
  */
 size_t rtrb_read(rtrb *rb, uint8_t *data, size_t len);
+
+/*
+ * Return the number of bytes available for reading.
+ */
+size_t rtrb_read_available(rtrb *rb);
 
 #ifdef __cplusplus
 }

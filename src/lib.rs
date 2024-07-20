@@ -57,6 +57,16 @@ pub extern "C" fn rtrb_write(
 }
 
 #[no_mangle]
+pub extern "C" fn rtrb_write_available(rb: *mut RingBuffer) -> usize {
+    if rb.is_null() {
+        return 0;
+    }
+
+    let rb = unsafe { &mut *rb };
+    rb.producer.slots()
+}
+
+#[no_mangle]
 pub extern "C" fn rtrb_read(
     rb: *mut RingBuffer,
     data: *mut u8,
@@ -86,4 +96,14 @@ pub extern "C" fn rtrb_read(
     chunk.commit_all();
 
     slots
+}
+
+#[no_mangle]
+pub extern "C" fn rtrb_read_available(rb: *mut RingBuffer) -> usize {
+    if rb.is_null() {
+        return 0;
+    }
+
+    let rb = unsafe { &mut *rb };
+    rb.consumer.slots()
 }

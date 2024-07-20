@@ -10,6 +10,18 @@ bool test_write_and_read()
 
     rtrb *rb = rtrb_new(6);
 
+    if (rtrb_write_available(rb) != 6)
+    {
+        passed = false;
+        goto cleanup;
+    }
+
+    if (rtrb_read_available(rb) != 0)
+    {
+        passed = false;
+        goto cleanup;
+    }
+
     /*
      * Write and read twice to cover the case where the first and second slices
      * are non-empty.
@@ -42,6 +54,18 @@ bool test_write_and_read()
                 goto cleanup;
             }
         }
+    }
+
+    if (rtrb_write_available(rb) != 6)
+    {
+        passed = false;
+        goto cleanup;
+    }
+
+    if (rtrb_read_available(rb) != 0)
+    {
+        passed = false;
+        goto cleanup;
     }
 
 cleanup:
