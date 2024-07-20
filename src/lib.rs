@@ -46,14 +46,14 @@ pub extern "C" fn rtrb_write(
 
     let (first, second) = chunk.as_mut_slices();
     let mid = first.len();
-    let slots = mid + second.len();
+    let end = mid + second.len();
 
     slice[..mid].copy_to_uninit(first);
-    slice[mid..].copy_to_uninit(second);
+    slice[mid..end].copy_to_uninit(second);
 
     unsafe { chunk.commit_all() };
 
-    slots
+    end
 }
 
 #[no_mangle]
@@ -88,14 +88,14 @@ pub extern "C" fn rtrb_read(
 
     let (first, second) = chunk.as_slices();
     let mid = first.len();
-    let slots = mid + second.len();
+    let end = mid + second.len();
 
     slice[..mid].copy_from_slice(first);
-    slice[mid..].copy_from_slice(second);
+    slice[mid..end].copy_from_slice(second);
 
     chunk.commit_all();
 
-    slots
+    end
 }
 
 #[no_mangle]

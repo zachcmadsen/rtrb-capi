@@ -26,3 +26,25 @@ fn write_and_read() {
 
     rtrb_free(rb);
 }
+
+#[test]
+fn write_none_available() {
+    let rb = rtrb_new(0);
+
+    let buf = [1, 2, 3, 4];
+    let written = rtrb_write(rb, buf.as_ptr(), buf.len());
+    assert_eq!(written, 0);
+
+    rtrb_free(rb);
+}
+
+#[test]
+fn read_none_available() {
+    let rb = rtrb_new(0);
+
+    let mut buf = [1, 2, 3, 4];
+    let read = rtrb_read(rb, buf.as_mut_ptr(), buf.len());
+    assert_eq!(read, 0);
+
+    rtrb_free(rb);
+}

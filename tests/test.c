@@ -55,11 +55,45 @@ cleanup:
     return passed;
 }
 
+bool test_write_none_available()
+{
+    bool passed = true;
+
+    rtrb *rb = rtrb_new(0);
+
+    uint8_t buf[] = {1, 2, 3, 4};
+    size_t written = rtrb_write(rb, buf, sizeof(buf));
+    CHECK(written == 0);
+
+cleanup:
+    rtrb_free(rb);
+
+    return passed;
+}
+
+bool test_read_none_available()
+{
+    bool passed = true;
+
+    rtrb *rb = rtrb_new(0);
+
+    uint8_t buf[] = {1, 2, 3, 4};
+    size_t read = rtrb_read(rb, buf, sizeof(buf));
+    CHECK(read == 0);
+
+cleanup:
+    rtrb_free(rb);
+
+    return passed;
+}
+
 int main(int argc, char *argv[])
 {
     bool passed = true;
 
     passed &= test_write_and_read();
+    passed &= test_write_none_available();
+    passed &= test_read_none_available();
 
     return passed ? EXIT_SUCCESS : EXIT_FAILURE;
 }
