@@ -60,7 +60,7 @@ add_custom_command(
 # build invocation.
 add_custom_target(rtrb-capi DEPENDS ${RTRB_SHARED_LIB} ${RTRB_STATIC_LIB})
 
-add_library(rtrb-shared SHARED IMPORTED)
+add_library(rtrb-shared SHARED IMPORTED GLOBAL)
 add_library(rtrb::rtrb-shared ALIAS rtrb-shared)
 add_dependencies(rtrb-shared rtrb-capi)
 
@@ -73,7 +73,7 @@ endif()
 
 target_include_directories(rtrb-shared INTERFACE ${PROJECT_SOURCE_DIR}/include)
 
-add_library(rtrb-static STATIC IMPORTED)
+add_library(rtrb-static STATIC IMPORTED GLOBAL)
 add_library(rtrb::rtrb-static ALIAS rtrb-static)
 add_dependencies(rtrb-static rtrb-capi)
 
