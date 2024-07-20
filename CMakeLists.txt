@@ -15,8 +15,6 @@ execute_process(
 	ERROR_VARIABLE CARGO_STDERR
 )
 
-message(STATUS "cargo output: ${CARGO_STDERR}")
-
 set(RTRB_STATIC_LINK_LIBRARIES "")
 set(RTRB_STATIC_LINK_OPTIONS "")
 
