@@ -11,6 +11,6 @@
 # endif()
 
 add_executable(rtrb-test test.c)
-target_link_libraries(rtrb-test PRIVATE rtrb::rtrb-static)
+target_link_libraries(rtrb-test PRIVATE rtrb::rtrb-shared)
 
 add_test("rtrb-test" rtrb-test)
