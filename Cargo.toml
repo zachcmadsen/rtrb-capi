@@ -4,9 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [lib]
-# The lib crate type is only included so I can run tests in Miri. This package
-# isn't meant to be consumed as a Rust library.
-crate-type = ["cdylib", "staticlib", "lib"]
+name = "rtrb"
+crate-type = ["staticlib"]
 
 [dependencies]
 rtrb = "0.3.1"
