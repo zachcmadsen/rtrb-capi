@@ -46,6 +46,8 @@ jobs:
         run: ctest --test-dir build --output-on-failure
 
   miri:
+    name: Miri
+
     runs-on: ubuntu-latest
 
     steps:
