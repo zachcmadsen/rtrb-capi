@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.27)
 
-project(rtrb)
+project(
+    rtrb
+    VERSION 0.1.0
+)
 
 include(FetchContent)
 FetchContent_Declare(
