@@ -10,7 +10,7 @@ FetchContent_Declare(
     GIT_REPOSITORY https://github.com/corrosion-rs/corrosion.git
     # I got errors related to msvcrt linker options on v0.5.0, the latest
     # published release as of 2024-07-29. This commit removes msvcrt linker
-    # options, leaving it up to CMake pick the right msvcrt:
+    # options, leaving it up to CMake pick the right msvcrt.
     # 
     # Commit: https://github.com/corrosion-rs/corrosion/commit/b45275c8b5ee16118008a6a140ce842557b3e47a
     GIT_TAG b45275c8b5ee16118008a6a140ce842557b3e47a
