@@ -8,7 +8,7 @@ include(FetchContent)
 FetchContent_Declare(
     Corrosion
     GIT_REPOSITORY https://github.com/corrosion-rs/corrosion.git
-    GIT_TAG v0.5
+    GIT_TAG b45275c8b5ee16118008a6a140ce842557b3e47a
 )
 message(STATUS "Fetching Corrosion...")
 FetchContent_MakeAvailable(Corrosion)
