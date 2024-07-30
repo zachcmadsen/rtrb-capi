@@ -1,5 +1,7 @@
-// Note: We assume that usize is compatible with size_t. See
+// Note: This library assume that usize is compatible with size_t. See
 // https://github.com/dtolnay/cxx/pull/576.
+
+use std::ptr;
 
 use rtrb::{chunks::ChunkError, CopyToUninit};
 
@@ -37,11 +39,11 @@ pub extern "C" fn rtrb_write(
         return 0;
     }
 
-    let rb = unsafe { &mut *rb };
-    let mut chunk = match rb.producer.write_chunk_uninit(len) {
+    let producer = unsafe { &mut *ptr::addr_of_mut!((*rb).producer) };
+    let mut chunk = match producer.write_chunk_uninit(len) {
         Ok(chunk) => chunk,
         Err(ChunkError::TooFewSlots(available_slots)) => {
-            rb.producer.write_chunk_uninit(available_slots).unwrap()
+            producer.write_chunk_uninit(available_slots).unwrap()
         }
     };
 
@@ -65,8 +67,9 @@ pub extern "C" fn rtrb_write_available(rb: *mut RingBuffer) -> usize {
         return 0;
     }
 
-    let rb = unsafe { &mut *rb };
-    rb.producer.slots()
+    let producer = unsafe { &mut *ptr::addr_of_mut!((*rb).producer) };
+
+    producer.slots()
 }
 
 #[no_mangle]
@@ -79,11 +82,11 @@ pub extern "C" fn rtrb_read(
         return 0;
     }
 
-    let rb = unsafe { &mut *rb };
-    let chunk = match rb.consumer.read_chunk(len) {
+    let consumer = unsafe { &mut *ptr::addr_of_mut!((*rb).consumer) };
+    let chunk = match consumer.read_chunk(len) {
         Ok(chunk) => chunk,
         Err(ChunkError::TooFewSlots(available_slots)) => {
-            rb.consumer.read_chunk(available_slots).unwrap()
+            consumer.read_chunk(available_slots).unwrap()
         }
     };
 
@@ -107,6 +110,7 @@ pub extern "C" fn rtrb_read_available(rb: *mut RingBuffer) -> usize {
         return 0;
     }
 
-    let rb = unsafe { &mut *rb };
-    rb.consumer.slots()
+    let consumer = unsafe { &mut *ptr::addr_of_mut!((*rb).consumer) };
+
+    consumer.slots()
 }
