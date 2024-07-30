@@ -25,13 +25,12 @@ If your project uses CMake, then you can include `rtrb-capi` with
 include(FetchContent)
 FetchContent_Declare(
     rtrb
-    GIT_REPOSITORY  https://github.com/zachcmadsen/rtrb-capi
-    GIT_TAG main
+    URL  https://github.com/zachcmadsen/rtrb-capi/releases/download/v0.1.0/rtrb-src.tar.gz
 )
 FetchContent_MakeAvailable(rtrb)
 
 add_executable(rtrb-example main.cpp)
-target_link_libraries(rtrb-example PRIVATE rtrb::rtrb-static) # or rtrb::rtrb-shared
+target_link_libraries(rtrb-example PRIVATE rtrb::rtrb)
 ```
 
 [ci_badge]: https://github.com/zachcmadsen/rtrb-capi/workflows/CI/badge.svg
