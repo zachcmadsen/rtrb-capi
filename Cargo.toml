@@ -4,8 +4,9 @@ version = "0.1.0"
 edition = "2021"
 
 [lib]
-name = "rtrb"
-crate-type = ["staticlib"]
+# This package isn't meant to be used as a Rust library. The lib crate type is
+# only included to support Rust integration tests.
+crate-type = ["lib", "staticlib"]
 
 [dependencies]
 rtrb = "0.3.1"

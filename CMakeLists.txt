@@ -20,9 +20,9 @@ FetchContent_MakeAvailable(Corrosion)
 
 corrosion_import_crate(MANIFEST_PATH Cargo.toml)
 
-add_library(rtrb::rtrb ALIAS rtrb)
-target_include_directories(rtrb INTERFACE include)
-target_compile_features(rtrb INTERFACE c_std_90)
+add_library(rtrb::rtrb ALIAS rtrb_capi)
+target_include_directories(rtrb_capi INTERFACE include)
+target_compile_features(rtrb_capi INTERFACE c_std_90)
 
 if(RTRB_BUILD_TESTS)
     include(CTest)
