@@ -70,7 +70,7 @@ if(WIN32)
 	# library file in IMPORTED_IMPLIB.
 	set_target_properties(rtrb-shared PROPERTIES IMPORTED_IMPLIB ${RTRB_SHARED_LIB}.lib)
 else()
-	set_target_properties(rtrb-shared PROPERTIES SONAME "librtrb_capi.so.0")
+	set_target_properties(rtrb-shared PROPERTIES IMPORTED_SONAME "librtrb_capi.so.0")
 endif()
 
 target_include_directories(rtrb-shared INTERFACE ${PROJECT_SOURCE_DIR}/include)
