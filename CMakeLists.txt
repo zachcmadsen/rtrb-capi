@@ -2,8 +2,6 @@ cmake_minimum_required(VERSION 3.27)
 
 project(rtrb)
 
-option(RTRB_BUILD_TESTS "Build rtrb tests" OFF)
-
 include(FetchContent)
 FetchContent_Declare(
     Corrosion
@@ -24,8 +22,14 @@ add_library(rtrb::rtrb ALIAS rtrb_capi)
 target_include_directories(rtrb_capi INTERFACE include)
 target_compile_features(rtrb_capi INTERFACE c_std_90)
 
-if(RTRB_BUILD_TESTS)
-    include(CTest)
-    enable_testing()
-    add_subdirectory(tests)
+# Define the test target when the project isn't used as a library, i.e., when it
+# isn't a subdirectory.
+if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+    option(RTRB_BUILD_TESTS "Build rtrb tests" ON)
+
+    if(RTRB_BUILD_TESTS)
+        include(CTest)
+        enable_testing()
+        add_subdirectory(tests)
+    endif()
 endif()

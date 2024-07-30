@@ -37,7 +37,7 @@ jobs:
           echo "$GITHUB_WORKSPACE/bin" >> $GITHUB_PATH
 
       - name: Configure
-        run: cmake -S . -B build -GNinja -DCMAKE_BUILD_TYPE=Release -DRTRB_BUILD_TESTS=ON 
+        run: cmake -S . -B build -GNinja -DCMAKE_BUILD_TYPE=Release
 
       - name: Build
         run: cmake --build build
