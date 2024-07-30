@@ -1,13 +1,15 @@
-add_executable(rtrb-test test.c)
-target_link_libraries(rtrb-test PRIVATE rtrb::rtrb-shared)
+Include(FetchContent)
+FetchContent_Declare(
+  Catch2
+  GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+  GIT_TAG        v3.6.0
+)
+message(STATUS "Fetching Catch2...")
+FetchContent_MakeAvailable(Catch2)
 
-if (WIN32)
-    add_custom_command(
-        TARGET rtrb-test
-        POST_BUILD
-        COMMAND "${CMAKE_COMMAND}" -E copy_if_different "$<TARGET_FILE:rtrb::rtrb-shared>" "$<TARGET_FILE_DIR:rtrb-test>"
-        VERBATIM
-    )
-endif()
+add_executable(rtrb-tests rtrb_tests.cpp)
+target_link_libraries(rtrb-tests PRIVATE rtrb::rtrb Catch2::Catch2WithMain)
+target_compile_features(rtrb-tests PRIVATE cxx_std_17)
 
-add_test("rtrb-test" rtrb-test)
+include(Catch)
+catch_discover_tests(rtrb-tests)
