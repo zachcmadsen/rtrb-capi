@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.27)
 
 project(rtrb)
 
-# option(RTRB_BUILD_TESTS "Build rtrb tests" OFF)
+option(RTRB_BUILD_TESTS "Build rtrb tests" OFF)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -24,8 +24,8 @@ add_library(rtrb::rtrb ALIAS rtrb)
 target_include_directories(rtrb INTERFACE include)
 target_compile_features(rtrb INTERFACE c_std_90)
 
-# if(RTRB_BUILD_TESTS)
-#     include(CTest)
-#     enable_testing()
-#     add_subdirectory(tests)
-# endif()
+if(RTRB_BUILD_TESTS)
+    include(CTest)
+    enable_testing()
+    add_subdirectory(tests)
+endif()
