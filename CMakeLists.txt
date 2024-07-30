@@ -69,6 +69,8 @@ if(WIN32)
 	# Shared libraries on Windows need to specify the location of the DLL import
 	# library file in IMPORTED_IMPLIB.
 	set_target_properties(rtrb-shared PROPERTIES IMPORTED_IMPLIB ${RTRB_SHARED_LIB}.lib)
+else()
+	set_target_properties(rtrb-shared PROPERTIES SONAME "librtrb_capi.so.0")
 endif()
 
 target_include_directories(rtrb-shared INTERFACE ${PROJECT_SOURCE_DIR}/include)
