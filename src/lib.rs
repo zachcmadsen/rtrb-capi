@@ -1,4 +1,4 @@
-// Note: This library assume that usize is compatible with size_t. See
+// Note: This library assumes that usize is compatible with size_t. See
 // https://github.com/dtolnay/cxx/pull/576.
 
 use std::ptr;
