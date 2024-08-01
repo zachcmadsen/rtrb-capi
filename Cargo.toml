@@ -5,7 +5,7 @@ edition = "2021"
 
 [lib]
 # This package isn't meant to be used as a Rust library. The lib crate type is
-# only included to support Rust integration tests.
+# only included for use in integration tests.
 crate-type = ["lib", "staticlib"]
 
 [dependencies]
