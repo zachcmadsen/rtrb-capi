@@ -28,7 +28,8 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(rtrb)
 
-add_executable(rtrb-example main.cpp)
+add_executable(rtrb-example)
+target_sources(rtrb-example PRIVATE main.cpp)
 target_link_libraries(rtrb-example PRIVATE rtrb::rtrb)
 ```
 
