@@ -4,8 +4,7 @@
 
 A C API for [`rtrb`][rtrb], a thread-safe SPSC ring buffer written in Rust.
 
-The C API only covers a part of `rtrb`'s [chunk API][rtrb-chunks], and the
-buffer only holds unsigned 8-bit integers.
+The C API only covers part of `rtrb`'s API.
 
 ## Documentation
 
@@ -32,6 +31,8 @@ FetchContent_MakeAvailable(rtrb)
 add_executable(rtrb-example main.cpp)
 target_link_libraries(rtrb-example PRIVATE rtrb::rtrb)
 ```
+
+<!-- TODO: Add instructions for using it without CMake. -->
 
 [ci_badge]: https://github.com/zachcmadsen/rtrb-capi/workflows/CI/badge.svg
 [ci]: https://github.com/zachcmadsen/rtrb-capi/actions?query=branch%3Amain
