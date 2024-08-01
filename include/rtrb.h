@@ -9,26 +9,28 @@ extern "C"
 #endif
 
 /*
- * A ring buffer.
+ * A lock-free ring buffer.
+ * 
+ * It's safe to use an rtrb from two threads simultaneously with one thread
+ * writing to the buffer and one reading from it.
  */
 typedef struct rtrb rtrb;
 
 /*
- * Creates a new ring buffer with capacity `capacity`.
+ * Creates a new ring buffer with the given capacity.
  */
 rtrb *rtrb_new(size_t capacity);
 
 /*
- * Frees the ring buffer `rb`.
+ * Frees the given ring buffer.
  *
- * It's undefined behavior to call the function more than once for the same
- * pointer.
+ * It's undefined behavior to free the same ring buffer more than once.
  */
 void rtrb_free(rtrb *rb);
 
 /*
- * Writes up to `len` bytes from `data` to `rb`, and returns the number of bytes
- * written.
+ * Writes up to len bytes from data to the ring buffer and returns the number of
+ * bytes written.
  */
 size_t rtrb_write(rtrb *rb, const uint8_t *data, size_t len);
 
@@ -38,8 +40,8 @@ size_t rtrb_write(rtrb *rb, const uint8_t *data, size_t len);
 size_t rtrb_write_available(rtrb *rb);
 
 /*
- * Reads up to `len` bytes from `rb` into `data`, and returns the number of
- * bytes read.
+ * Reads up to len bytes from the ring buffer into data and returns the number
+ * of bytes read.
  */
 size_t rtrb_read(rtrb *rb, uint8_t *data, size_t len);
 
